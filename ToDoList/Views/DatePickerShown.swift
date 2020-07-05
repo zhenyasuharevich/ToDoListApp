@@ -1,5 +1,5 @@
 //
-//  DatePickerCell.swift
+//  DatePickerShown.swift
 //  ToDoList
 //
 //  Created by Zhenya Suharevich on 05.07.2020.
@@ -8,8 +8,6 @@
 
 import UIKit
 
-class DatePickerCell: UITableViewCell {
-
-    @IBOutlet var datePicker: SectionDatePicker!
-    
+class DatePickerShown{
+    var isShown: Bool!
 }

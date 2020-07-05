@@ -27,7 +27,7 @@ extension ToDoItemTableViewController /*: UITableViewDataSource*/{
         if let cell = tableView.cellForRow(at: indexPath){
             return cell.isHidden ? 0 : UITableView.automaticDimension
         }else{
-            return /*value is Date && indexPath.row == 1 ? 0 :*/ UITableView.automaticDimension
+            return value is Date && indexPath.row == 1 ? 0 : UITableView.automaticDimension
         }
     }
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -55,8 +55,13 @@ extension ToDoItemTableViewController/*: UITableViewDelegate*/{
         let value = todo.values[indexPath.section]
         
         if value is Date{
+            let datePickerIndexPath = IndexPath(row: 1, section: indexPath.section)
+            guard let cell = tableView.cellForRow(at: datePickerIndexPath) else {return}
             
+            cell.isHidden.toggle()
             
+            tableView.beginUpdates()
+            tableView.endUpdates()
             
         }else if value is UIImage {
             

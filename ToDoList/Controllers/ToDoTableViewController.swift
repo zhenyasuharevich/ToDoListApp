@@ -33,6 +33,24 @@ class ToDoTableViewController: UITableViewController {
         
         return cell
     }
+    // MARK:  - UITableViewDelegate
+    override func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
+        return .delete
+    }
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        switch editingStyle {
+        case .delete:
+            todos.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .automatic)
+        case .insert:
+            break
+        case .none:
+            break
+        @unknown default:
+            print(#line, #function , "Unknown error in file \(#file)")
+            break
+        }
+    }
     
     // MARK: -Cell content
     func configure(_ cell: ToDoCell, with todo: ToDo){
